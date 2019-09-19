@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhengqing.modules.code.mapper.ProjectTemplateMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhengqing.modules.code.entity.ProjectTemplate">
+        <id column="id" property="id"/>
+        <result column="project_id" property="projectId"/>
+        <result column="type" property="type"/>
+        <result column="file_suffix" property="fileSuffix"/>
+        <result column="content" property="content"/>
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <select id="selectTemplates" resultMap="BaseResultMap">
+        SELECT
+        t.*,
+        p.name AS projectName,
+        pp.name AS packageName
+        FROM t_code_project_template t
+        LEFT JOIN t_code_project p ON t.project_id = p.id
+        LEFT JOIN t_code_project_package pp ON t.type = pp.id
+        WHERE
+        1 = 1
+        <if test="filter.id!=null">
+            AND t.id = #{filter.id}
+        </if>
+        <if test="filter.projectId!=null">
+            AND t.project_id = #{filter.projectId}
+        </if>
+        <if test="filter.userId!=null and filter.userId!=''">
+            AND	p.user_id = #{filter.userId}
+        </if>
+        ORDER BY t.id DESC
+    </select>
+
+    <delete id="deleteTemplatesByProjectId">
+        DELETE  FROM  t_code_project_template
+        WHERE 1=1
+        <if test="projectId!=null">
+            AND project_id = #{projectId}
+        </if>
+    </delete>
+
+</mapper>

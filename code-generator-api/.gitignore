@@ -1,0 +1,17 @@
+﻿# 忽略文件
+
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+target
+document/log
+document/upload
+

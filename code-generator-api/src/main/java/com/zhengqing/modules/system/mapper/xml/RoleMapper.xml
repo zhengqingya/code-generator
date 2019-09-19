@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhengqing.modules.system.mapper.RoleMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.zhengqing.modules.system.entity.Role">
+		<id column="id" property="id" />
+		<result column="code" property="code" />
+		<result column="name" property="name" />
+		<result column="remarks" property="remarks" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+	</resultMap>
+
+    <resultMap id="ResultMap" type="com.zhengqing.modules.system.dto.output.RoleView" extends="BaseResultMap"/>
+
+    <select id="selectRoles" resultMap="ResultMap">
+        SELECT
+        sr.*, (
+            CASE
+            WHEN (SELECT COUNT(sur.id) FROM t_sys_user_role sur WHERE sur.role_id = sr.id ) THEN '1'
+            ELSE '0'
+            END) AS isRelatedSysUser,
+        (
+            CASE
+            WHEN ( SELECT COUNT(srp.id) FROM t_sys_role_menu srp WHERE srp.role_id = sr.id ) THEN '1'
+            ELSE '0'
+            END ) AS isRelatedSysMenu
+        FROM
+            t_sys_role sr
+        WHERE
+        1 = 1
+        <if test="filter.name!=null and filter.name!=''">
+            AND sr.name LIKE '%${filter.name}%'
+        </if>
+        ORDER BY sr.gmt_modified DESC
+    </select>
+
+    <select id="selectRoleByUserId" resultType="com.zhengqing.modules.system.entity.Role">
+        SELECT sr.* FROM t_sys_role sr
+        LEFT JOIN t_sys_user_role sur ON sr.id=sur.role_id
+        WHERE sur.user_id = #{userId}
+    </select>
+
+    <select id="selectRoleByMenuId" resultType="com.zhengqing.modules.system.entity.Role">
+        SELECT sr.* FROM t_sys_role sr
+        LEFT JOIN t_sys_role_menu srm ON sr.id=srm.role_id
+        WHERE srm.menu_id = #{menuId}
+    </select>
+
+</mapper>

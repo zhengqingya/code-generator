@@ -1,0 +1,17 @@
+# code-generator-api
+code-generator-api/.idea_modules/
+code-generator-api/*.iml
+code-generator-api/code-generator-api.iml
+code-generator-api/*.log
+code-generator-api/.idea/
+code-generator-api/target/
+code-generator-api/document/log/
+code-generator-api/document/upload/
+
+# code-generator-web
+code-generator-web/node_modules/
+code-generator-web/dist/
+
+.idea
+
+*.log
