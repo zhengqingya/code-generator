@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhengqing.modules.system.mapper.MenuMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.zhengqing.modules.system.entity.Menu">
+		<id column="id" property="id" />
+		<result column="parent_id" property="parentId" />
+		<result column="url" property="url" />
+		<result column="resources" property="resources" />
+		<result column="title" property="title" />
+		<result column="level" property="level" />
+		<result column="sort_no" property="sortNo" />
+		<result column="icon" property="icon" />
+		<result column="type" property="type" />
+		<result column="remarks" property="remarks" />
+		<result column="gmt_create" property="gmtCreate" />
+		<result column="gmt_modified" property="gmtModified" />
+	</resultMap>
+
+
+    <select id="selectMenus" resultMap="BaseResultMap">
+        SELECT
+             *
+        FROM t_sys_menu
+        WHERE
+             1 = 1
+        <if test="filter.id!=null and filter.id!=''">
+            AND	id= #{filter.id}
+        </if>
+        ORDER BY id DESC
+    </select>
+
+    <select id="findByResources" resultType="com.zhengqing.modules.system.entity.Menu">
+		SELECT
+             *
+        FROM t_sys_menu
+		WHERE
+		1 = 1
+		<if test="resources!=null and resources!=''">
+			AND	resources = #{resources}
+		</if>
+	</select>
+
+    <select id="selectMenuByRoleId" resultType="com.zhengqing.modules.system.entity.Menu">
+		SELECT sm.* FROM t_sys_menu sm
+	    LEFT JOIN t_sys_role_menu srm ON sm.id = srm.menu_id
+	    WHERE srm.role_id = #{roleId}
+	</select>
+
+</mapper>

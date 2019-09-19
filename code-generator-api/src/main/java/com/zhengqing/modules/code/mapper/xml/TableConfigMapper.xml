@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhengqing.modules.code.mapper.TableConfigMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.zhengqing.modules.code.entity.TableConfig">
+        <id column="id" property="id"/>
+        <result column="project_id" property="projectId"/>
+        <result column="table_name" property="tableName"/>
+        <result column="query_columns" property="queryColumns"/>
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <select id="selectTableConfigs" resultMap="BaseResultMap">
+        SELECT *
+        FROM t_code_table_config tc
+        WHERE 1 = 1
+        <if test="filter.id!=null">
+            AND tc.id = #{filter.id}
+        </if>
+        <if test="filter.projectId!=null">
+            AND tc.project_id = #{filter.projectId}
+        </if>
+        <if test="filter.tableName!=null and filter.tableName!=''">
+            AND tc.table_name = #{filter.tableName}
+        </if>
+        ORDER BY tc.id DESC
+    </select>
+
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhengqing.modules.system.mapper.UserRoleMapper">
+
+	<!-- 通用查询映射结果 -->
+	<resultMap id="BaseResultMap" type="com.zhengqing.modules.system.entity.UserRole">
+		<id column="id" property="id" />
+		<result column="user_id" property="userId" />
+		<result column="role_id" property="roleId" />
+		<result column="gmt_create" property="gmtCreate" />
+		<result column="gmt_modified" property="gmtModified" />
+	</resultMap>
+
+    <!--    <resultMap id="ResultMap" type="com.zhengqing.modules.system.dto.output.RoleView" extends="BaseResultMap"></resultMap>-->
+
+    <select id="selectUserRoles" resultMap="BaseResultMap">
+        SELECT
+             *
+        FROM t_sys_user_role
+        WHERE
+             1 = 1
+        <if test="filter.id!=null and filter.id!=''">
+            AND	id= #{filter.id}
+        </if>
+        <if test="filter.roleId!=null and filter.roleId!=''">
+            AND	role_id= #{filter.roleId}
+        </if>
+        ORDER BY id DESC
+    </select>
+
+    <delete id="deleteByRoleId">
+        DELETE FROM t_sys_user_role
+        WHERE 1=1
+        <if test="roleId!=null">
+            AND role_id = #{roleId}
+        </if>
+    </delete>
+
+    <select id="selectRoleByUserId" resultType="com.zhengqing.modules.system.entity.Role">
+        SELECT
+            r.*
+        FROM
+            t_sys_user_role ur
+        LEFT JOIN t_sys_role r ON ur.role_id = r.id
+        WHERE 1=1
+        <if test="userId!=null">
+            AND user_id = #{userId}
+        </if>
+    </select>
+
+</mapper>
