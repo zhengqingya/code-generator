@@ -1,0 +1,30 @@
+version: '3'
+services:
+  api:                                  # 后端springboot容器
+    container_name: code-generator-api    # 容器名为'code-generator-api'
+    restart: always                     # 重启策略: 容器退出时总是重启容器
+    build:
+      context: ./                       # 指定设定上下文根目录，然后以该目录为准指定Dockerfile
+      dockerfile: ./docker/api-Dockerfile
+    working_dir: /app                   # 设置工作目录为容器内的app文件夹
+    environment:
+      TZ: Asia/Shanghai
+    volumes:                            # 挂载文件
+      - ./code-generator-api:/app                 # 将主机的code-api文件夹(java代码)映射到容器内的app文件夹
+      - ./logs/:/app/log                # 映射容器产生的日志到主机的logs文件夹
+    ports:                              # 映射端口
+      - "9100:9100"
+    command: mvn clean spring-boot:run -Dspring-boot.run.profiles=prod '-Dmaven.test.skip=true' # 容器创建后执行命令运行springboot项目
+
+  web:                                  # 前端node容器(运行nginx中的Vue项目)
+    container_name: code-generator-web    # 容器名为'code-generator-web'
+    restart: always                     # 重启策略: 容器退出时总是重启容器
+    build:
+      context: ./                       # 指定设定上下文根目录，然后以该目录为准指定Dockerfile
+      dockerfile: docker/web/web-Dockerfile
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "8100:8100"                      # 映射端口
+    depends_on:                          # 依赖于api容器，被依赖容器启动后此web容器才可启动
+      - api
