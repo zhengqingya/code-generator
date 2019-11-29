@@ -17,8 +17,12 @@
 权限：Shiro
 .......
 
+#### 项目部署
+
+参考： [docker-compose部署项目到服务器](https://zhengqing.blog.csdn.net/article/details/103068220) 
+
 ### 二、代码生成器介绍
-###### 线上体验地址： [http://www.zhengqing520.com:8100/code-generator/dashboard](http://www.zhengqing520.com:8100/code-generator/dashboard)
+###### 线上体验地址： [http://www.zhengqingya.com:8100/code-generator/dashboard](http://www.zhengqing520.com:8100/code-generator/dashboard)
 ![在这里插入图片描述](https://images.gitee.com/uploads/images/2019/0922/140826_05b3d0de_1988119.png)
 #### 1、登录：
 测试账号：test   密码：123456  
