@@ -45,7 +45,7 @@
         <pinyin4j.version>2.5.0</pinyin4j.version>
         <fastjson.version>1.2.13</fastjson.version>
         <velocity.version>1.7</velocity.version>
-        <ant.version>1.9.4</ant.version>
+        <ant.version>1.10.9</ant.version>
 
         <!-- zq:||=================================================== -->
         <!--本地包的引入-->
