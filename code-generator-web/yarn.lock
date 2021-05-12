@@ -1883,15 +1883,10 @@ code-point-at@^1.0.0:
   resolved "http://registry.npm.taobao.org/code-point-at/download/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-codemirror@5.39.2:
-  version "5.39.2"
-  resolved "http://registry.npm.taobao.org/codemirror/download/codemirror-5.39.2.tgz#778aa13b55ebf280745c309cb1b148e3fc06f698"
-  integrity sha1-d4qhO1Xr8oB0XDCcsbFI4/wG9pg=
-
-codemirror@^5.33.0:
-  version "5.42.2"
-  resolved "http://registry.npm.taobao.org/codemirror/download/codemirror-5.42.2.tgz#801ab715a7a7e1c7ed4162b78e9d8138b98de8f0"
-  integrity sha1-gBq3Faen4cftQWK3jp2BOLmN6PA=
+codemirror@5.58.2, codemirror@^5.33.0:
+  version "5.58.2"
+  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.58.2.tgz#ed54a1796de1498688bea1cdd4e9eeb187565d1b"
+  integrity sha512-K/hOh24cCwRutd1Mk3uLtjWzNISOkm4fvXiMO7LucCrqbh6aJDdtqUziim3MZUI6wOY0rvY1SlL1Ork01uMy6w==
 
 codepage@~1.12.0:
   version "1.12.2"
@@ -5447,6 +5442,11 @@ mockjs@1.0.1-beta3:
   integrity sha1-0jTzwnJWOXVk8slVFC6JGQlTcgk=
   dependencies:
     commander "*"
+
+moment@^2.24.0:
+  version "2.29.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
 move-concurrently@^1.0.1:
   version "1.0.1"

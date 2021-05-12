@@ -36,7 +36,7 @@
   "dependencies": {
     "axios": "0.18.0",
     "clipboard": "1.7.1",
-    "codemirror": "5.39.2",
+    "codemirror": "5.58.2",
     "driver.js": "0.8.1",
     "dropzone": "5.2.0",
     "echarts": "4.1.0",
