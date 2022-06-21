@@ -35,7 +35,7 @@
         <mybatisplus-spring-boot-starter.version>1.0.4</mybatisplus-spring-boot-starter.version>
         <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
         <thymeleaf-layout-dialect.version>2.1.1</thymeleaf-layout-dialect.version>
-        <mysql.version>5.1.40</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <ehcache.version>2.5.3</ehcache.version>
         <elasticsearch>2.4.4</elasticsearch>
         <jxls.version>2.4.0</jxls.version>
